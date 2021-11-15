@@ -3558,39 +3558,6 @@ C3.Plugins.SpeechSynthesis.Acts={SpeakText(text,lang,voiceUri,volume,rate,pitch)
 }
 
 {
-'use strict';const C3=self.C3;C3.Behaviors.solid=class SolidBehavior extends C3.SDKBehaviorBase{constructor(opts){super(opts)}Release(){super.Release()}};
-
-}
-
-{
-'use strict';const C3=self.C3;C3.Behaviors.solid.Type=class SolidType extends C3.SDKBehaviorTypeBase{constructor(behaviorType){super(behaviorType)}Release(){super.Release()}OnCreate(){}};
-
-}
-
-{
-'use strict';const C3=self.C3;const ENABLE=0;const TAGS=1;const EMPTY_SET=new Set;
-C3.Behaviors.solid.Instance=class SolidInstance extends C3.SDKBehaviorInstanceBase{constructor(behInst,properties){super(behInst);this.SetEnabled(true);if(properties){this.SetEnabled(properties[ENABLE]);this.SetTags(properties[TAGS])}}Release(){super.Release()}SetEnabled(e){this._inst._SetSolidEnabled(!!e)}IsEnabled(){return this._inst._IsSolidEnabled()}SetTags(tagList){const savedDataMap=this._inst.GetSavedDataMap();if(!tagList.trim()){savedDataMap.delete("solidTags");return}let solidTags=savedDataMap.get("solidTags");
-if(!solidTags){solidTags=new Set;savedDataMap.set("solidTags",solidTags)}solidTags.clear();for(const tag of tagList.split(" "))if(tag)solidTags.add(tag.toLowerCase())}GetTags(){return this._inst.GetSavedDataMap().get("solidTags")||EMPTY_SET}SaveToJson(){return{"e":this.IsEnabled()}}LoadFromJson(o){this.SetEnabled(o["e"])}GetPropertyValueByIndex(index){switch(index){case ENABLE:return this.IsEnabled()}}SetPropertyValueByIndex(index,value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProperties(){return[{title:"$"+
-this.GetBehaviorType().GetName(),properties:[{name:"behaviors.solid.properties.enabled.name",value:this.IsEnabled(),onedit:v=>this.SetEnabled(v)}]}]}};
-
-}
-
-{
-'use strict';const C3=self.C3;C3.Behaviors.solid.Cnds={IsEnabled(){return this.IsEnabled()}};
-
-}
-
-{
-'use strict';const C3=self.C3;C3.Behaviors.solid.Acts={SetEnabled(e){this.SetEnabled(e)},SetTags(tagList){this.SetTags(tagList)}};
-
-}
-
-{
-'use strict';const C3=self.C3;C3.Behaviors.solid.Exps={};
-
-}
-
-{
 'use strict';const C3=self.C3;const C3X=self.C3X;let tempVec2a=null;let tempVec2b=null;let vec2RecycleCache=[];let Box2D=null;let physicsBehavior=null;const PHYSICS_COLLISIONS_KEY="Physics_DisabledCollisions";
 function SetObjectTypeCollisionsEnabled(typeA,typeB,state){const savedA=typeA.GetSavedDataMap();const savedB=typeB.GetSavedDataMap();if(state){const setA=savedA.get(PHYSICS_COLLISIONS_KEY);if(setA)setA.delete(typeB.GetSID());const setB=savedB.get(PHYSICS_COLLISIONS_KEY);if(setB)setB.delete(typeA.GetSID())}else{let setA=savedA.get(PHYSICS_COLLISIONS_KEY);if(!setA){setA=new Set;savedA.set(PHYSICS_COLLISIONS_KEY,setA)}let setB=savedB.get(PHYSICS_COLLISIONS_KEY);if(!setB){setB=new Set;savedB.set(PHYSICS_COLLISIONS_KEY,
 setB)}setA.add(typeB.GetSID());setB.add(typeA.GetSID())}}
@@ -3756,6 +3723,39 @@ value){switch(index){case SPEED:this._speed=C3.toRadians(value);break;case ACCEL
 }
 
 {
+'use strict';const C3=self.C3;C3.Behaviors.solid=class SolidBehavior extends C3.SDKBehaviorBase{constructor(opts){super(opts)}Release(){super.Release()}};
+
+}
+
+{
+'use strict';const C3=self.C3;C3.Behaviors.solid.Type=class SolidType extends C3.SDKBehaviorTypeBase{constructor(behaviorType){super(behaviorType)}Release(){super.Release()}OnCreate(){}};
+
+}
+
+{
+'use strict';const C3=self.C3;const ENABLE=0;const TAGS=1;const EMPTY_SET=new Set;
+C3.Behaviors.solid.Instance=class SolidInstance extends C3.SDKBehaviorInstanceBase{constructor(behInst,properties){super(behInst);this.SetEnabled(true);if(properties){this.SetEnabled(properties[ENABLE]);this.SetTags(properties[TAGS])}}Release(){super.Release()}SetEnabled(e){this._inst._SetSolidEnabled(!!e)}IsEnabled(){return this._inst._IsSolidEnabled()}SetTags(tagList){const savedDataMap=this._inst.GetSavedDataMap();if(!tagList.trim()){savedDataMap.delete("solidTags");return}let solidTags=savedDataMap.get("solidTags");
+if(!solidTags){solidTags=new Set;savedDataMap.set("solidTags",solidTags)}solidTags.clear();for(const tag of tagList.split(" "))if(tag)solidTags.add(tag.toLowerCase())}GetTags(){return this._inst.GetSavedDataMap().get("solidTags")||EMPTY_SET}SaveToJson(){return{"e":this.IsEnabled()}}LoadFromJson(o){this.SetEnabled(o["e"])}GetPropertyValueByIndex(index){switch(index){case ENABLE:return this.IsEnabled()}}SetPropertyValueByIndex(index,value){switch(index){case ENABLE:this.SetEnabled(value);break}}GetDebuggerProperties(){return[{title:"$"+
+this.GetBehaviorType().GetName(),properties:[{name:"behaviors.solid.properties.enabled.name",value:this.IsEnabled(),onedit:v=>this.SetEnabled(v)}]}]}};
+
+}
+
+{
+'use strict';const C3=self.C3;C3.Behaviors.solid.Cnds={IsEnabled(){return this.IsEnabled()}};
+
+}
+
+{
+'use strict';const C3=self.C3;C3.Behaviors.solid.Acts={SetEnabled(e){this.SetEnabled(e)},SetTags(tagList){this.SetTags(tagList)}};
+
+}
+
+{
+'use strict';const C3=self.C3;C3.Behaviors.solid.Exps={};
+
+}
+
+{
 const C3 = self.C3;
 self.C3_GetObjectRefTable = function () {
 	return [
@@ -3763,12 +3763,12 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Touch,
 		C3.Plugins.Browser,
 		C3.Plugins.Sprite,
-		C3.Behaviors.solid,
 		C3.Behaviors.Physics,
 		C3.Plugins.Text,
 		C3.Behaviors.Rotate,
 		C3.Plugins.Audio,
 		C3.Plugins.SpeechSynthesis,
+		C3.Behaviors.solid,
 		C3.Plugins.System.Cnds.IsGroupActive,
 		C3.Plugins.System.Cnds.OnLayoutStart,
 		C3.Plugins.SpeechRecognition.Acts.StopSpeechRecognition,
@@ -3778,41 +3778,50 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.SpeechRecognition.Cnds.IsRecognisingSpeech,
 		C3.Plugins.System.Cnds.CompareBoolVar,
 		C3.Plugins.SpeechRecognition.Acts.RequestSpeechRecognition,
-		C3.Plugins.System.Cnds.EveryTick,
 		C3.Plugins.SpeechRecognition.Exps.InterimTranscript,
 		C3.Plugins.System.Cnds.Every,
 		C3.Plugins.System.Acts.CreateObject,
 		C3.Plugins.System.Exps.random,
-		C3.Plugins.Sprite.Acts.SetSize,
 		C3.Plugins.Sprite.Cnds.OnCreated,
+		C3.Plugins.Sprite.Acts.SetSize,
+		C3.Plugins.Sprite.Acts.StopAnim,
 		C3.Plugins.Sprite.Acts.SetAnimFrame,
 		C3.Plugins.System.Exps.choose,
-		C3.Plugins.Sprite.Acts.StopAnim,
+		C3.Plugins.System.Acts.Wait,
+		C3.Plugins.Sprite.Acts.SetBoolInstanceVar,
 		C3.Plugins.Sprite.Cnds.OnDestroyed,
 		C3.Plugins.System.Acts.AddVar,
 		C3.Plugins.System.Acts.SetVar,
 		C3.Plugins.System.Exps.int,
+		C3.Plugins.Sprite.Cnds.IsBoolInstanceVarSet,
+		C3.Behaviors.Physics.Acts.SetEnabled,
+		C3.Plugins.Sprite.Cnds.IsOnScreen,
+		C3.Behaviors.Physics.Cnds.IsEnabled,
 		C3.Plugins.System.Cnds.Compare,
 		C3.Plugins.System.Exps.find,
 		C3.Plugins.Text.Exps.Text,
 		C3.Plugins.Sprite.Cnds.CompareFrame,
+		C3.Plugins.System.Cnds.TriggerOnce,
 		C3.Plugins.Sprite.Acts.Destroy,
 		C3.Plugins.Audio.Acts.Play,
+		C3.Plugins.System.Cnds.EveryTick,
 		C3.Plugins.Sprite.Cnds.OnCollision,
 		C3.Plugins.Sprite.Cnds.CompareInstanceVar,
 		C3.Plugins.Audio.Acts.StopAll,
 		C3.Plugins.System.Acts.SetBoolVar,
+		C3.Plugins.Sprite.Cnds.IsVisible,
+		C3.Plugins.Sprite.Acts.SetVisible,
 		C3.Plugins.System.Acts.ResetGlobals,
 		C3.Plugins.System.Acts.RestartLayout,
 		C3.Plugins.System.Acts.GoToLayout,
 		C3.Plugins.Sprite.Acts.SetAnim,
-		C3.Plugins.System.Cnds.TriggerOnce,
-		C3.Plugins.System.Acts.Wait,
 		C3.Behaviors.solid.Acts.SetEnabled,
-		C3.Behaviors.Physics.Acts.SetEnabled,
 		C3.Plugins.Sprite.Acts.ZMoveToObject,
-		C3.Plugins.Sprite.Acts.MoveAtAngle,
 		C3.Plugins.SpeechRecognition.Cnds.SupportsSpeechRecognition,
+		C3.Plugins.Text.Acts.SetVisible,
+		C3.Plugins.Touch.Cnds.OnTouchStart,
+		C3.Plugins.Browser.Cnds.IsFullscreen,
+		C3.Plugins.Browser.Acts.RequestFullScreen,
 		C3.Plugins.System.Cnds.OnLoadFinished,
 		C3.Plugins.Audio.Cnds.IsTagPlaying,
 		C3.Plugins.SpeechSynthesis.Acts.SpeakText,
@@ -3823,7 +3832,7 @@ self.C3_JsPropNameTable = [
 	{SpeechRecognition: 0},
 	{Touch: 0},
 	{Browser: 0},
-	{Solid: 0},
+	{Destroyable: 0},
 	{Physics: 0},
 	{Food: 0},
 	{TextSpeech: 0},
@@ -3839,6 +3848,7 @@ self.C3_JsPropNameTable = [
 	{ButtonStudy: 0},
 	{TextScore: 0},
 	{Pos: 0},
+	{Solid: 0},
 	{Deadline: 0},
 	{ButtonBack: 0},
 	{RecordSpace: 0},
@@ -3850,6 +3860,7 @@ self.C3_JsPropNameTable = [
 	{Q1_3: 0},
 	{TextPlay2: 0},
 	{Instructions: 0},
+	{ErrorText: 0},
 	{FallSpeed: 0},
 	{Score: 0},
 	{Dead: 0},
@@ -3858,10 +3869,8 @@ self.C3_JsPropNameTable = [
 	{Started: 0},
 	{FoodStatus: 0},
 	{FoodStatus2: 0},
-	{AnimationPicker: 0},
 	{FrameCounter: 0},
-	{Speech: 0},
-	{Answer: 0}
+	{Speech: 0}
 ];
 }
 
@@ -3964,10 +3973,7 @@ function or(l, r)
 self.C3_ExpressionFuncs = [
 		() => "Speech",
 		() => "Tap to Speak",
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			return () => v0.GetValue();
-		},
+		() => 3,
 		() => "",
 		() => "zh",
 		p => {
@@ -3975,6 +3981,10 @@ self.C3_ExpressionFuncs = [
 			return () => f0();
 		},
 		() => "Food Fall",
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => v0.GetValue();
+		},
 		() => 0,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -3989,21 +3999,18 @@ self.C3_ExpressionFuncs = [
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 		},
+		() => 0.2,
 		() => 1,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const v1 = p._GetNode(1).GetVar();
 			return () => f0(v1.GetValue());
 		},
-		() => 2,
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			return () => (v0.GetValue() * 1.02);
-		},
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			return () => (v0.GetValue() * 0.98);
 		},
+		() => 0.5,
 		() => "Fruit3",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -4027,12 +4034,12 @@ self.C3_ExpressionFuncs = [
 			const n1 = p._GetNode(1);
 			return () => f0(n1.ExpObject(), "香蕉");
 		},
+		() => 2,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const n1 = p._GetNode(1);
 			return () => f0(n1.ExpObject(), "草莓");
 		},
-		() => 3,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const n1 = p._GetNode(1);
@@ -4048,12 +4055,12 @@ self.C3_ExpressionFuncs = [
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const n1 = p._GetNode(1);
-			return () => f0(n1.ExpObject(), "李子");
+			return () => f0(n1.ExpObject(), "离子");
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const n1 = p._GetNode(1);
-			return () => f0(n1.ExpObject(), "离子");
+			return () => f0(n1.ExpObject(), "李子");
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -4084,33 +4091,26 @@ self.C3_ExpressionFuncs = [
 			return () => and("Score: ", v0.GetValue());
 		},
 		() => "Top",
-		() => "Tap to play again.",
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			return () => and("You scored: ", v0.GetValue());
-		},
+		() => "You scored:",
 		() => -15,
+		() => "back",
 		() => "Listening",
 		() => "TapToSpeak",
-		() => 0.5,
-		() => 50,
+		() => 15,
+		() => 1.3,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0(40, 80, 120, 160, 200, 240, 280, 320, 360, 400, 440);
 		},
-		() => 72,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
-			const f1 = p._GetNode(1).GetBoundMethod();
-			return () => f0(f1(0, 9));
+			return () => f0(180, 200);
 		},
-		() => 1.3,
-		() => 90,
+		() => "error",
 		() => "Speech7",
 		() => 250,
 		() => "苹果",
 		() => "UI",
-		() => 0.8,
 		() => "Animation Picker2",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -4140,22 +4140,7 @@ self.C3_ExpressionFuncs = [
 		() => "芒果",
 		() => "máng guǒ",
 		() => "葡萄",
-		() => "pú táo",
-		() => "Q1",
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			const n1 = p._GetNode(1);
-			return () => f0(n1.ExpObject(), "我的名字是");
-		},
-		() => "我的名字是",
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			const n1 = p._GetNode(1);
-			return () => f0(n1.ExpObject(), "我叫");
-		},
-		() => "我叫",
-		() => "你叫什么名字?",
-		() => "李梅"
+		() => "pú táo"
 ];
 
 
